@@ -25,7 +25,7 @@ brief about Version control
 
 Working tree -- stageing area -- repoitory 
 
-[Three States](areas.png)
+![Three States](areas.png)
 
 ## 1- working tree : 
 is the directory on your local machine where you are currently working on files. It contains the actual files and directories that you see and edit.
@@ -66,7 +66,7 @@ to clone a existrepo on any host "git clone <url>"
 
 
 ## lifecycle of the status of your files
-[lifecycle of state file](lifecycle.png)
+![lifecycle of state file](lifecycle.png)
 Checking the Status of Your Files "$git status" show you all changes status
 
 ## see what you’ve changed 

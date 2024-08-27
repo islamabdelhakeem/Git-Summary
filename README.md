@@ -273,6 +273,8 @@ Rebasing is the process of moving or combining a sequence of commits to a new ba
 Instead of creating a merge commit, git rebase re-applies the changes from the source branch onto the target branch. This results in a linear history.
 Rebasing results in a linear history, making it easier to follow
 
+![merge-rebase](merge-rebase.png)
+
 ## revert vs reset vs checkout 
 
 ### git revert

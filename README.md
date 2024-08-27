@@ -259,6 +259,75 @@ Definition: Cloning creates a local copy of a repository on your computer. It do
 Forking
 Definition: Forking creates a new copy of a repository under your own account on a Git hosting platform (like GitHub, GitLab, or Bitbucket). This new repository is independent of the original repository but maintains its history.
 
+-----------------------------------------------------------------------------
+# More git Tips
+
+## Merging vs. rebasing
+
+1. Git Merge
+Merging is the process of combining the changes from one branch into another.
+When you merge one branch into another, Git creates a new commit called a merge commit. This commit has two parent commits: one from each of the branches being merged.
+
+2. Git Rebase
+Rebasing is the process of moving or combining a sequence of commits to a new base commit.
+Instead of creating a merge commit, git rebase re-applies the changes from the source branch onto the target branch. This results in a linear history.
+Rebasing results in a linear history, making it easier to follow
+
+## revert vs reset vs checkout 
+
+### git revert
+: is a command in Git that allows you to undo changes made by a previous commit by creating a new commit that reverses the effects of that commit.
+Creates a New Commit: When you revert a commit, Git generates a new commit that applies the inverse of the changes introduced by the specified commit. This means that if a commit added lines of code, the revert commit will remove those lines, and vice versa.
+Preserves History: git revert does not delete the original commit; instead, it creates a new commit that undoes its changes. 
+- git revert <commit-hash>
+
+ex : 
+1. view commit log 
+git log --oneline
+result 
+f7f3f6d (HEAD -> main) Add new feature
+b1c33b9 Fix bug in feature
+a8c94e2 Update documentation
+2. Revert the commit with hash b1c33b9:
+git revert b1c33b9
+Git will create a new commit that undoes the changes made in the b1c33b9 commit.
+
+### git reset 
+git reset is used to move the branch pointer to a specific commit, optionally modifying the index (staging area) and working directory to match that commit
+
+types of reset 
+1. Soft Reset (git reset --soft <commit>):
+Keeps your changes in the staging area (index) and working directory but moves the HEAD pointer to the specified commit.
+git reset --soft HEAD~1
+
+2. Mixed Reset (git reset --mixed <commit>):
+Unstages the changes (removes them from the index) but keeps the changes in your working directory.
+git reset --mixed HEAD~1
+
+3. Hard Reset (git reset --hard <commit>):
+Removes the changes from the staging area and working directory, resetting everything to the specified commit. This is destructive and cannot be undone.
+git reset --hard HEAD~1
+
+used When you want to discard or move commits in your branch, either to unstage changes, undo commits, or wipe out all changes made after a specific commit
+
+
+### git checkout
+is used to switch between branches or to navigate to a specific commit in your project’s history. It can also be used to restore files in the working directory.
+
+Files and Changes: All files in your working directory will reflect the state they were in at the time of the specified commit. This means that any edits, additions, or deletions made in that commit will be present in your working directory.
+
+"
+in case one i have commit have file.txt contain "my name is islam "
+and seconed commit have "my seconed name is hakeem "
+and i edit after seconed commit and add "my last name is ali "
+what happed when i use git checkout <second-commit>
+
+
+- The git checkout <second-commit-hash> command will update your working directory to reflect the state of file.txt as it was in the second commit.
+
+- The line "my last name is ali" that you added after the second commit will disappear from the working directory because git checkout <second-commit-hash> effectively rolls back your working directory to match exactly what was in the repository at the time of the second commit.
+
+- You will be in a detached HEAD state, meaning you're no longer on any branch. The HEAD pointer is now at the second commit, but you're not on the branch where you made the uncommitted change.
 
 
 

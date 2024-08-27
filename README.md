@@ -11,10 +11,10 @@ brief about Version control
 --------------------------------------------------
 # why we use git ?
 
-1- Track evrything in project
-2- History track 
-3- save everything changed 
-4- evrychange have a uniq Id 
+1. Track evrything in project
+2. History track 
+3. save everything changed 
+4. evrychange have a uniq Id 
 ------------------------------------------------------
 
 1- In first this is concept of VCS 
@@ -125,7 +125,7 @@ Restoring to a Specific Commit:
 ## Working with remote
 1. Adding Remote Repositories :: $ git remote add <Url>
 2. if you have more remote you can show it by :: $ git remote -v
-3. to get all branches in remote host :: $ git fetch
+3. to get all branches in remote host to your local :: $ git fetch
 4. get all changes in remote :: $ git pull
 
 
@@ -138,6 +138,65 @@ tag is a reference to a specific point in the commit history. Tags are often use
 3. To view details of a specific tag, especially annotated tags, use: git show <tagname>
 4. Pushing Tags : git push origin <tagname>
 5. Deleting Tags : git tag -d <tagname>
+
+
+# Git Branch
+Git branches are effectively a pointer to a snapshot of your changes. When you want to add a new feature or fix a bug—no matter how big or how small—you spawn a new branch to encapsulate your changes
+![Branching](branching.png)
+this diagram show two isolated lines of development, one for a little feature, and one for a longer-running feature. By developing them in branches, it’s not only possible to work on both of them in parallel, but it also keeps the main branch free from questionable code.
+
+## Creating branches
+
+- create a branch using : git branch <branch-name> but it still in local Repo you need to move it to Remote server to be allawed for other developers
+this image show create a new branch frommain that is take head pointer of last commit in main branch 
+![Create branch](create-branch.png)
+
+- Creating remote branches
+to push you branch in remote repo use : git push --set-upstream origin <branch-name>
+
+- Checkout branches : The " git checkout <branch-name>" command lets you navigate between the branches created
+- git checkout -b ＜new-branch＞: create new branch and switch to this branch you are created
+
+# merging
+
+## Git merge 
+will combine multiple sequences of commits into one unified history. In the most frequent use cases, git merge is used to combine two branches : git merge
+![merge-two-branches](merge-two-branches.png)
+
+## merge conflict 
+in Git occurs when changes from two branches (that you're trying to merge) cannot be automatically combined. This often happens when different changes have been made to the same line of a file in both branches or when one branch deletes a file that the other branch has modified. Here's how to handle merge conflicts
+
+### Steps ex:
+1. Start the Merge:
+    git checkout main
+    git merge feature-branch
+2. Conflict Detected: Git indicates that file.txt has conflicts.
+3. open "file.txt" to resolve conflict
+4. stage resolved by 
+    git add .
+    git commit -m "solve conflicts between main and feature-branch"
+    git push
+
+
+## merge strategies 
+merge strategies determine how changes from different branches are combined when you perform a merge. The choice of merge strategy can affect how conflicts are handled
+
+### merge strategies : 
+1. Recursive (default)
+Usage: This is the default strategy when merging two branches.
+"git merge branch-name"
+2. Resolve
+Usage: This strategy is used for merging two branches when you want to prioritize one branch over the other.
+"git merge -s resolve branch-name"
+3. Octopus
+Usage: This strategy is used for merging more than two branches at the same time. It can handle multiple branches in a single merge but is best suited for cases where conflicts are unlikely or simple to resolve. 
+git merge -s octopus branch1 branch2 branch3
+4. The Ours merge
+is a specialized tool used to resolve merge conflicts by favoring the changes from the current branch over the changes from the branch being merged. This strategy is useful when you want to perform a merge but explicitly want to ignore the changes from the other branch, effectively keeping your current branch's content unchanged
+git merge -s ours branch-name
+5. Subtree 
+The Subtree merge strategy in Git is used to integrate the contents of one repository into a subdirectory of another repository
+git merge -s subtree branchA branchB
 
 
 

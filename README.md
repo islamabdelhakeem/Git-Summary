@@ -157,7 +157,7 @@ to push you branch in remote repo use : git push --set-upstream origin <branch-n
 - Checkout branches : The " git checkout <branch-name>" command lets you navigate between the branches created
 - git checkout -b ＜new-branch＞: create new branch and switch to this branch you are created
 
-# merging
+# Git merging
 
 ## Git merge 
 will combine multiple sequences of commits into one unified history. In the most frequent use cases, git merge is used to combine two branches : git merge
@@ -197,6 +197,68 @@ git merge -s ours branch-name
 5. Subtree 
 The Subtree merge strategy in Git is used to integrate the contents of one repository into a subdirectory of another repository
 git merge -s subtree branchA branchB
+
+
+# Gitflow workflow
+Git Flow is a branching model designed to streamline the process of managing multiple branches in Git repositories.Git Flow provides a structured approach to handling feature development, releases, and hotfixes, making it easier to maintain a stable production codebase while allowing for ongoing development.
+
+## 1. Main Branches
+
+main (or master or Production): This branch represents the production-ready code. It contains the latest stable release.
+develop: This branch serves as the integration branch for features. It holds the latest development changes that are ready to be included in the next release.
+
+## 2. Additional branches
+
+### Feature Branches:
+
+Naming Convention: feature/<feature-name>
+ Used to develop new features or enhancements. Created from develop and merged back into develop when complete.
+
+![featureBranching](featureBranching.png)
+
+### Release Branches(Teasting):
+
+Naming Convention: release/<version>
+Used to prepare for a new release. Created from develop when the code is feature-complete and ready for final testing. Merged into both main and develop after the release.
+
+![RelaseBranching](RelaseBranching.png)
+
+### Hotfix Branches:
+
+Naming Convention: hotfix/<issue>
+Purpose: Used to quickly address critical issues or bugs in production. Created from main, merged back into both main and develop after the fix.
+
+![HotFix](HotFix.png)
+
+
+# forking 
+1. A developer 'forks' an 'official' server-side repository. This creates their own server-side copy.
+
+2. The new server-side copy is cloned to their local system.
+
+3. A Git remote path for the 'official' repository is added to the local clone.
+
+4. A new local feature branch is created.
+
+5. The developer makes changes on the new branch.
+
+6. New commits are created for the changes.
+
+7. The branch gets pushed to the developer's own server-side copy.
+
+8. The developer opens a pull request from the new branch to the 'official' repository.
+
+9. The pull request gets approved for merge and is merged into the original server-side repository
+
+To integrate the feature into the official codebase, the maintainer pulls the contributor’s changes into their local repository, checks to make sure it doesn’t break the project, merges it into their local main branch, then pushes the main branch to the official repository on the server. The contribution is now part of the project, and other developers should pull from the official repository to synchronize their local repositories
+
+## Forking vs. Cloning
+Cloning
+Definition: Cloning creates a local copy of a repository on your computer. It downloads the repository’s files, history, and branches to your local machine.
+
+Forking
+Definition: Forking creates a new copy of a repository under your own account on a Git hosting platform (like GitHub, GitLab, or Bitbucket). This new repository is independent of the original repository but maintains its history.
+
 
 
 
